@@ -1,0 +1,28 @@
+server:
+  port: 80
+
+spring:
+  application:
+    name: GATEWAY
+  zipkin:
+    base-url: http://127.0.0.1:9411/
+  cloud:
+    gateway:
+      httpclient:
+        connect-timeout: 3000
+        response-timeout: 10s
+      routes:
+        - id: DEMO
+          uri: lb://DEMO
+          predicates:
+            - Path=/api/**
+
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    instance:
+      hostname: localhost
