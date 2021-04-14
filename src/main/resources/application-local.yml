@@ -2,9 +2,13 @@ server:
   port: 80
 
 spring:
+  config:
+    activate:
+      on-profile: local
   application:
     name: GATEWAY
   zipkin:
+    enabled: false
     base-url: http://127.0.0.1:9411/
   cloud:
     gateway:
